@@ -1,6 +1,6 @@
 # SQLTools Hive Driver
 
-This is a SQLTools plugin to integrate with Hive.
+This is a [SQLTools](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools) plugin to integrate with Hive. Providing for running Hive SQL and getting results, SQL formatting, generating SQL statements and SQL completion.
 
 # Premises and Recommends
 
@@ -68,4 +68,5 @@ This plugin is only for connection testing and local trials, please do not use i
 - Support SQL format.
 
 ![Hive SQLTools Demo8"](https://img.alicdn.com/imgextra/i1/O1CN01UxoJKm1aMJsyV5AsZ_!!6000000003315-0-tps-2878-1666.jpg)
+
 
