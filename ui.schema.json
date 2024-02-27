@@ -1,0 +1,21 @@
+{
+  "ui:order": [
+    "host",
+    "port",
+    "username",
+    "password"
+  ],
+  "host": {
+    "ui:widget": "text"
+  },
+  "port": {
+    "ui:widget": "text",
+    "ui:help": "Port number"
+  },
+  "username": {
+    "ui:widget": "text"
+  },
+  "password": {
+    "ui:widget": "password"
+  }
+}

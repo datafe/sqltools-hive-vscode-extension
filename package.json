@@ -1,0 +1,87 @@
+{
+  "name": "sqltools-driver-hive",
+  "displayName": "SQLTools Hive Driver",
+  "description": "SQLTools Hive Driver, provides for running Hive SQL and getting results, SQL formatting, generating SQL statements and SQL completion.",
+  "version": "0.0.8",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "publisher": "dataworks",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/datafe/sqltools-hive-vscode-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/datafe/sqltools-hive-vscode-extension"
+  },
+  "keywords": [
+    "sqltools-driver",
+    "apache",
+    "hive",
+    "emr",
+    "ecs",
+    "bigdata",
+    "aliyun",
+    "alibaba",
+    "cloud",
+    "computing",
+    "dataworks"
+  ],
+  "galleryBanner": {
+    "theme": "light",
+    "color": "#fafafa"
+  },
+  "icon": "icon.png",
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters",
+    "Other"
+  ],
+  "extensionDependencies": [
+    "mtxr.sqltools"
+  ],
+  "activationEvents": [
+    "*",
+    "onLanguage:sql",
+    "onCommand:sqltools.*"
+  ],
+  "main": "./out/extension.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "vscode:prepublish": "yarn run build",
+    "vscode:package": "vsce package --allow-star-activation",
+    "build": "rimraf out && yarn run compile:ext && yarn run compile:ls",
+    "esbuild": "esbuild --platform=node --tsconfig=./tsconfig.json --external:vscode --log-level=error --color=true --format=cjs",
+    "compile:ext": "yarn run esbuild --bundle ./src/extension.ts --outfile=./out/extension.js --target=es2020 --define:process.env.PRODUCT=\"'ext'\"",
+    "compile:ls": "yarn run esbuild --bundle ./src/ls/plugin.ts --outfile=./out/ls/plugin.js --target=es2020 --define:process.env.PRODUCT=\"'ls'\"",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+    "@sqltools/base-driver": "^0.1.11",
+    "@sqltools/formatter": "^1.2.5",
+    "compare-versions": "3.6.0",
+    "concurrently": "^5.2.0",
+    "hive-driver": "^0.2.0",
+    "lodash": "^4.17.19",
+    "strip-comments": "^2.0.1",
+    "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "@sqltools/types": "^0.1.7",
+    "@types/lodash": "^4.14.123",
+    "@types/node": "^14.0.9",
+    "@types/uuid": "^9.0.7",
+    "@types/vscode": "^1.72.0",
+    "@vscode/vsce": "^2.19.0",
+    "esbuild": "^0.15.7",
+    "prettier": "^3.1.1",
+    "rimraf": "^3.0.2",
+    "typescript": "~4.8.3"
+  },
+  "packageManager": "yarn@1.22.21"
+}

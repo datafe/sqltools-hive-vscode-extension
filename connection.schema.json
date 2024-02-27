@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "host": {
+      "title": "Host",
+      "type": "string",
+      "minLength": 1
+    },
+    "port": {
+      "title": "Port",
+      "type": "number",
+      "minLength": 1
+    },
+    "username": {
+      "title": "Username",
+      "type": "string",
+      "minLength": 1
+    },
+    "password": {
+      "title": "Password",
+      "type": "string",
+      "minLength": 1,
+      "password": true
+    }
+  },
+  "required": [
+    "host",
+    "port"
+  ]
+}
