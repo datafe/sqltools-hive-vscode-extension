@@ -11,7 +11,7 @@ This plugin is only for connection testing and local resources management, pleas
 
 # Quick Start
 
-- Prepare an EMR instance, we use Alibaba Cloud EMR for example, goto [EMR Console](https://emr-next.console.aliyun.com/) and [apply](https://emr-next.console.aliyun.com/#/resource/all/create/ecs) an instance and setup instance password.
+- Prepare an EMR instance, we use Alibaba Cloud EMR as an example, goto [EMR Console](https://emr-next.console.aliyun.com/) and [apply](https://emr-next.console.aliyun.com/#/resource/all/create/ecs) an instance and setup instance password.
 
 ![Apply an Hive Instance1](https://img.alicdn.com/imgextra/i2/O1CN01EjkVTH1kNMx1nWfFS_!!6000000004671-0-tps-2878-1506.jpg)
 
