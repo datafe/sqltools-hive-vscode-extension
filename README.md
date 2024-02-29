@@ -43,7 +43,7 @@ This plugin is only for connection testing and local resources management, pleas
 
 ![Hive SQLTools Demo1](https://img.alicdn.com/imgextra/i2/O1CN018Qtrgu1U8E0C53qFQ_!!6000000002472-0-tps-2878-1664.jpg)
 
-- Input EMR Master ECS public IP address, port 10000 and instance password.
+- Input EMR Master ECS public IP address, port 10000, instance username and password.
 
 ![Hive SQLTools Demo2"](https://img.alicdn.com/imgextra/i4/O1CN01xwNlvj1KExfUwZSld_!!6000000001133-0-tps-2878-1682.jpg)
 
