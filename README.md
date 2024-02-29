@@ -29,7 +29,7 @@ This plugin is only for connection testing and local resources management, pleas
 
 ![Binding a Public Network Card](https://img.alicdn.com/imgextra/i1/O1CN01dqFHXY1FbnKvj2Bmv_!!6000000000506-0-tps-2878-1508.jpg)
 
-- Switch navigated tabs to security groups and allow port 10000 access from used IP address for EMR Master ECS.
+- Switch navigated tabs to security groups and allow port 10000 access from used IP address to EMR Master ECS.
 
 ![ECS Security Group](https://img.alicdn.com/imgextra/i3/O1CN01zPa1tR1ZTMMBVIG7n_!!6000000003195-0-tps-2878-1508.jpg)
 
