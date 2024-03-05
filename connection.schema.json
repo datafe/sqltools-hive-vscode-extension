@@ -22,6 +22,24 @@
       "type": "string",
       "minLength": 1,
       "password": true
+    },
+    "hiveCLIServiceProtocolVersion": {
+      "type": "string",
+      "title": "Hive CLI Connection Protocol Version",
+      "enum": [
+        "V11",
+        "V10",
+        "V9",
+        "V8",
+        "V7",
+        "V6",
+        "V5",
+        "V4",
+        "V3",
+        "V2",
+        "V1"
+      ],
+      "default": "V11"
     }
   },
   "required": [

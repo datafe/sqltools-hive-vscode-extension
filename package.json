@@ -2,7 +2,7 @@
   "name": "sqltools-driver-hive",
   "displayName": "SQLTools Hive Driver",
   "description": "SQLTools Hive Driver, provides for running Hive SQL and getting results, SQL formatting, generating SQL statements and SQL completion.",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "engines": {
     "vscode": "^1.72.0"
   },

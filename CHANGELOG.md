@@ -12,6 +12,12 @@ none
 
 ---
 
+## V0.0.10
+
+### Added
+
+1. add thrift hive CLI connection protocol version selector.
+
 ## V0.0.8
 
 ### Updated
