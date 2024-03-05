@@ -66,13 +66,19 @@ export default class HiveSQL<O = any> extends AbstractDriver<any, O> implements 
     }
 
     // create session
-    const { TCLIService_types } = hiveThrift || {};
     const session = await this.connectedHiveClient.openSession({
-      client_protocol: TCLIService_types.TProtocolVersion.HIVE_CLI_SERVICE_PROTOCOL_V10
+      client_protocol: this.getHiveCliServiceProtocolVersion(),
     });
 
     return session;
 
+  }
+
+  private getHiveCliServiceProtocolVersion() {
+    const { TCLIService_types } = hiveThrift || {};
+    const chosen: string = this.credentials?.hiveCLIServiceProtocolVersion;
+    const fit = TCLIService_types?.TProtocolVersion?.[`HIVE_CLI_SERVICE_PROTOCOL_${chosen}`];
+    return fit !== undefined ? fit : TCLIService_types.TProtocolVersion.HIVE_CLI_SERVICE_PROTOCOL_V11;
   }
 
   public async close() {
@@ -94,19 +100,28 @@ export default class HiveSQL<O = any> extends AbstractDriver<any, O> implements 
    */
   private executeOneQuery = async (session: IHiveSession, query: string): Promise<{ queriesResults: IOperation; columns: string[]; values: any[] }> => {
 
-    if (!query || !session) return;
+    let queriesResults: IOperation;
+    let columns: string[];
+    let values: ({ [key: string]: any })[];
 
-    const operation = await session?.executeStatement?.(query, { runAsync: false });
+    if (!query || !session) return { queriesResults, columns, values };
 
-    await this.hiveUtils.waitUntilReady(operation, false, () => { });
-    const queriesResults = await this.hiveUtils.fetchAll(operation);
-    await operation.close();
-    // ex [{"_c0":1}]
-    const values = this.hiveUtils.getResult(operation).getValue?.();
+    try {
+      const operation = await session?.executeStatement?.(query, { runAsync: false });
 
-    // this.hiveUtils.getResult(operation).getValue?.();
+      await this.hiveUtils.waitUntilReady(operation, false, () => { });
+      queriesResults = await this.hiveUtils.fetchAll(operation);
+      await operation.close();
+      // ex [{"_c0":1}]
+      values = this.hiveUtils.getResult(operation).getValue?.();
 
-    const columns = queriesResults?.getSchema?.()?.columns?.map?.(c => c?.columnName) || [];
+      // this.hiveUtils.getResult(operation).getValue?.();
+
+      columns = queriesResults?.getSchema?.()?.columns?.map?.(c => c?.columnName) || [];
+
+    } catch (e) {
+      console.error(e);
+    }
 
     return { queriesResults, columns, values };
 
@@ -210,12 +225,19 @@ export default class HiveSQL<O = any> extends AbstractDriver<any, O> implements 
    * values: ex [{"_c0":1}]
    */
   private commonHandleOperation = async (operation: IOperation) => {
-    await this.hiveUtils.waitUntilReady(operation, false, () => { });
-    const queriesResults = await this.hiveUtils.fetchAll(operation);
-    await operation.close();
-    // ex [{"_c0":1}]
-    const values = this.hiveUtils.getResult(operation).getValue?.() || [];
-    const columns = queriesResults?.getSchema?.()?.columns?.map?.(c => c?.columnName) || [];
+    let queriesResults: IOperation;
+    let columns: string[];
+    let values: ({ [key: string]: any })[];
+    try {
+      await this.hiveUtils.waitUntilReady(operation, false, () => { });
+      queriesResults = await this.hiveUtils.fetchAll(operation);
+      await operation.close();
+      // ex [{"_c0":1}]
+      values = this.hiveUtils.getResult(operation).getValue?.() || [];
+      columns = queriesResults?.getSchema?.()?.columns?.map?.(c => c?.columnName) || [];
+    } catch (e) {
+      console.error(e);
+    }
     return { queriesResults, columns, values };
   };
 
