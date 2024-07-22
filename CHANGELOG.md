@@ -12,6 +12,12 @@ none
 
 ---
 
+## V0.0.11
+
+### Added
+
+1. support empty username and password.
+
 ## V0.0.10
 
 ### Added
