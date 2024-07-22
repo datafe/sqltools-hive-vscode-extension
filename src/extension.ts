@@ -89,8 +89,10 @@ export async function activate(extContext: vscode.ExtensionContext): Promise<IDr
        * This hook is called after a connection definition has been fetched
        * from settings and is about to be used to connect.
        */
-      if (connInfo.password === undefined && !connInfo.askForPassword && !connInfo.connectString) {
-        const scopes = [connInfo.name, (connInfo.username || "")];
+      const username = connInfo.username;
+      const hasUsername = username && username.length > 0;
+      if (hasUsername && connInfo.password === undefined && !connInfo.askForPassword && !connInfo.connectString) {
+        const scopes = [connInfo.name, (username || "")];
         let session = await vscode.authentication.getSession(
           AUTHENTICATION_PROVIDER,
           scopes,
